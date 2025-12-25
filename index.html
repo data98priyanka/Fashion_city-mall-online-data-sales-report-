@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sales Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      padding: 40px;
+    }
+    .card {
+      background: white;
+      padding: 25px;
+      max-width: 450px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+    button {
+      padding: 10px;
+      margin-top: 10px;
+      width: 100%;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .results {
+      margin-top: 20px;
+      background: #eef2f5;
+      padding: 15px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h2>📊 Sales Tracker</h2>
+
+  <input type="number" id="saleInput" placeholder="Enter daily sales amount">
+  <button onclick="addSale()">Add Sale</button>
+  <button onclick="finish()">Finish & Calculate</button>
+
+  <div class="results" id="results" style="display:none;"></div>
+</div>
+
+<script>
+  let sales = [];
+
+  function addSale() {
+    const input = document.getElementById("saleInput");
+    const value = parseFloat(input.value);
+
+    if (isNaN(value) || value <= 0) {
+      alert("Please enter a valid positive number.");
+      return;
+    }
+
+    sales.push(value);
+    alert("Sale added: " + value);
+    input.value = "";
+  }
+
+  function finish() {
+    if (sales.length === 0) {
+      alert("No sales entered!");
+      return;
+    }
+
+    let total = 0;
+    for (let i = 0; i < sales.length; i++) {
+      total += sales[i];
+    }
+
+    let avg = total / sales.length;
+    let maxSale = Math.max(...sales);
+    let minSale = Math.min(...sales);
+
+    document.getElementById("results").style.display = "block";
+    document.getElementById("results").innerHTML = `
+      <strong>Sales Entered:</strong> ${sales.join(", ")} <br><br>
+      💰 <strong>Total Sales:</strong> ${total} <br>
+      📈 <strong>Average Sales:</strong> ${avg.toFixed(2)} <br>
+      🔝 <strong>Highest Sale:</strong> ${maxSale} <br>
+      🔻 <strong>Lowest Sale:</strong> ${minSale}
+    `;
+  }
+</script>
+
+</body>
+</html>
