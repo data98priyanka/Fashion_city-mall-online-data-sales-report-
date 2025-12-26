@@ -11,7 +11,7 @@
 </table>
 ## 📌 Business Summary
 
-| Section | Description |
+| WHAT | WHY |
 |---------|------------|
 | 🧠 **Business Problem** | Sales in Karnataka and Delhi were lagging behind other major states, indicating uneven regional performance. |
 | 🔍 **Insight** | Lower conversion and seasonal engagement were observed compared to western and southern markets. |
